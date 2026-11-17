@@ -6,12 +6,14 @@ let activeCategory = "Artists' Alley";
 
 const modal = document.getElementById('exhibitor-modal');
 const modalTitle = document.getElementById('modal-title');
-const modalBooth = document.getElementById('modal-booth');
+const modalBoothBtn = document.getElementById('modal-booth-btn');
+const modalBoothLabel = document.getElementById('modal-booth-label');
 const modalBio = document.getElementById('modal-bio');
 const modalWebsiteWrap = document.getElementById('modal-website-wrap');
 const modalWebsite = document.getElementById('modal-website');
 const modalArtworkWrap = document.getElementById('modal-artwork-wrap');
 const modalArtworkList = document.getElementById('modal-artwork-list');
+let activeExhibitor = null;
 
 const lightbox = document.getElementById('image-lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
@@ -58,7 +60,7 @@ function renderTable(items, queryText) {
   });
 }
 
-// Search across all categories when typing; otherwise show only the active tab
+// filter list
 function filterExhibitors() {
   const rawQuery = searchInput.value.trim();
   const query = rawQuery.toLowerCase();
@@ -92,8 +94,8 @@ function createArtworkHtml(exhibitorName, artwork) {
         </button>
       </div>
       <div class="artwork-details">
-        <h3>${artwork.title}</h3>
         <div class="artwork-box">
+          <h3>${artwork.title}</h3>
           ${paragraphsHtml}
           <p class="artwork-price">Price: ${artwork.price}</p>
         </div>
@@ -102,8 +104,9 @@ function createArtworkHtml(exhibitorName, artwork) {
 }
 
 function openModal(exhibitor) {
+  activeExhibitor = exhibitor;
   modalTitle.textContent = exhibitor.name;
-  modalBooth.textContent = `Booth ${exhibitor.booth}`;
+  modalBoothLabel.textContent = `Booth ${exhibitor.booth}`;
   modalBio.textContent = exhibitor.bio;
 
   if (exhibitor.website) {
@@ -128,7 +131,6 @@ function openModal(exhibitor) {
     });
   } else {
     modalArtworkWrap.hidden = true;
-    modalArtworkList.innerHTML = '';
   }
 
   modal.hidden = false;
@@ -149,7 +151,7 @@ function closeLightbox() {
   lightboxImg.src = '';
 }
 
-// Show booth marker and center map on it; skip booths without coordinates
+// highlight booth
 function highlightBooth(exhibitor) {
   if (!exhibitor.mapX) return;
   boothMarker.style.left = exhibitor.mapX + '%';
@@ -168,7 +170,8 @@ function updateZoom(delta) {
 searchInput.addEventListener('input', filterExhibitors);
 clearButton.addEventListener('click', resetSearch);
 
-document.querySelectorAll('header a, footer a').forEach((link) => {
+// ignore # links
+document.querySelectorAll('header a[href="#"], footer a[href="#"]').forEach((link) => {
   link.addEventListener('click', (e) => e.preventDefault());
 });
 
@@ -183,6 +186,11 @@ categoryTabs.forEach((tab) => {
 });
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
+modalBoothBtn.addEventListener('click', () => {
+  if (!activeExhibitor.mapX) return;
+  closeModal();
+  highlightBooth(activeExhibitor);
+});
 modal.addEventListener('click', (e) => {
   if (e.target === modal) closeModal();
 });
@@ -199,7 +207,7 @@ document.getElementById('map-clear-btn').addEventListener('click', () => {
 document.getElementById('zoom-in').addEventListener('click', () => updateZoom(0.5));
 document.getElementById('zoom-out').addEventListener('click', () => updateZoom(-0.5));
 
-// Zoom centered on the cursor position
+// wheel zoom
 mapViewport.addEventListener(
   'wheel',
   (e) => {
@@ -218,6 +226,7 @@ mapViewport.addEventListener(
   { passive: false }
 );
 
+// drag map
 let isDragging = false;
 let dragStartX = 0;
 let dragStartY = 0;

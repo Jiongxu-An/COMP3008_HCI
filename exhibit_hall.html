@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exhibit Hall - Comic-Con</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Header & Mega Menu -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="./index.html" class="brand-logo">
+          <img
+            src="./assets/ComicCon-Logo-Official.svg"
+            alt="San Diego Comic-Con International"
+          />
+        </a>
+
+        <div class="header-nav-wrap">
+          <nav class="utility-links">
+            <a href="./index.html">Home</a>
+            <a href="#" class="active">Comic-Con®</a>
+            <a href="#">WonderCon®</a>
+            <a href="#">SAM®</a>
+            <a href="#">Toucan Blog</a>
+            <a href="#">Museum</a>
+          </nav>
+
+          <nav class="main-nav">
+            <div class="nav-col">
+              <a href="#">BADGES</a>
+              <ul class="mega-sub">
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Member ID</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#">INDUSTRY</a>
+              <ul class="mega-sub">
+                <li><a href="#">Exhibitors</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Professional</a></li>
+                <li><a href="#">Retailers</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#">VISIT</a>
+              <ul class="mega-sub">
+                <li><a href="#">Travel</a></li>
+                <li><a href="#">Hospitality</a></li>
+                <li><a href="#">Accessibility</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#" class="current">EVENTS</a>
+              <ul class="mega-sub">
+                <li><a href="./exhibit_hall.html" class="active">Exhibit Hall</a></li>
+                <li><a href="#">Schedule</a></li>
+                <li><a href="#">Anime</a></li>
+                <li><a href="#">Films</a></li>
+                <li><a href="#">Autographs</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Special Events</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#">RESOURCES</a>
+              <ul class="mega-sub">
+                <li><a href="#">Souvenir Book</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Newsletter</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#">VOLUNTEER</a>
+              <ul class="mega-sub">
+                <li><a href="#">Apply</a></li>
+                <li><a href="#">Roles &amp; Perks</a></li>
+              </ul>
+            </div>
+
+            <div class="nav-col">
+              <a href="#">HELP</a>
+              <ul class="mega-sub">
+                <li><a href="#">Questions</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+            </div>
+
+            <div class="mega-bg"></div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero & Interactive Map -->
+      <section class="hero-section">
+        <div class="container">
+          <h1>EXHIBIT HALL</h1>
+
+          <div class="map-frame">
+            <div class="map-viewport" id="map-viewport">
+              <div class="map-stage" id="map-stage">
+                <img
+                  src="./assets/Comic-Con-2026-Exhibit-Hall-Map.png"
+                  alt="Comic-Con 2026 Exhibit Hall Floor Plan"
+                />
+                <div class="booth-marker" id="booth-marker" hidden></div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-dark map-clear-btn" id="map-clear-btn">Clear</button>
+
+            <div class="map-zoom-controls">
+              <button type="button" id="zoom-in">+</button>
+              <button type="button" id="zoom-out">-</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Directory Search & Table -->
+      <section class="directory-section">
+        <div class="container">
+          <div class="category-tabs">
+            <button type="button" class="active">Artists' Alley</button>
+            <button type="button">Exhibitors</button>
+            <button type="button">Fan Tables</button>
+            <button type="button">Small Press</button>
+          </div>
+
+          <div class="search-form">
+            <div class="search-row">
+              <label for="artist-search">Search By</label>
+              <input
+                id="artist-search"
+                type="text"
+                placeholder="Artist name"
+              />
+              <button type="button" class="btn-dark" id="clear-btn">Clear</button>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <table class="exhibitor-table">
+            <thead>
+              <tr>
+                <th>Artist/Company</th>
+                <th>Exhibit Locations</th>
+              </tr>
+            </thead>
+            <tbody id="exhibitor-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <img
+              src="./assets/ComicCon-Logo-Official.svg"
+              alt="San Diego Comic-Con International"
+            />
+            <ul class="footer-stack">
+              <li><a href="#">BADGES</a></li>
+              <li><a href="#">VISIT</a></li>
+              <li><a href="#">MERCH</a></li>
+              <li><a href="#">BLOG</a></li>
+              <li><a href="#">HELP</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>About Us</h3>
+            <ul>
+              <li><a href="#">Our History</a></li>
+              <li><a href="#">Remembering John</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Comic-Con</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">X</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">YouTube</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>WonderCon</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">X</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">YouTube</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Museum</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">X</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">YouTube</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Exhibitor Detail Modal -->
+    <div class="modal-backdrop" id="exhibitor-modal" hidden>
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p>Artists Alley · Exhibit Hall</p>
+            <h2 id="modal-title"></h2>
+          </div>
+          <button type="button" id="modal-close">×</button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-booth">
+            <button type="button" id="modal-booth-btn" class="modal-booth-btn">
+              <span id="modal-booth-label"></span>
+              <span class="modal-map-hint">Jump to map →</span>
+            </button>
+          </p>
+          <p class="section-label">About the Company:</p>
+          <p id="modal-bio"></p>
+          <div id="modal-website-wrap">
+            <p class="section-label">Website:</p>
+            <p><a id="modal-website" href="#" target="_blank" class="table-link"></a></p>
+          </div>
+          <div id="modal-artwork-wrap" hidden>
+            <p class="section-label">Artwork:</p>
+            <div class="artwork-list" id="modal-artwork-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artwork Lightbox -->
+    <div class="lightbox-backdrop" id="image-lightbox" hidden>
+      <button type="button" id="lightbox-close">×</button>
+      <div class="lightbox-scroll">
+        <img id="lightbox-img" src="" alt="" />
+      </div>
+    </div>
+
+    <script src="./directory.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
