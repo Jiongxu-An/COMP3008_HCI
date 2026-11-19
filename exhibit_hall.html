@@ -131,13 +131,6 @@
       <!-- Directory Search & Table -->
       <section class="directory-section">
         <div class="container">
-          <div class="category-tabs">
-            <button type="button" class="active">Artists' Alley</button>
-            <button type="button">Exhibitors</button>
-            <button type="button">Fan Tables</button>
-            <button type="button">Small Press</button>
-          </div>
-
           <div class="search-form">
             <div class="search-row">
               <label for="artist-search">Search By</label>
@@ -150,12 +143,20 @@
             </div>
           </div>
 
+          <div class="category-tabs">
+            <button type="button" class="active">Artists' Alley</button>
+            <button type="button">Exhibitors</button>
+            <button type="button">Fan Tables</button>
+            <button type="button">Small Press</button>
+          </div>
+
           <div class="divider"></div>
 
           <table class="exhibitor-table">
             <thead>
               <tr>
                 <th>Artist/Company</th>
+                <th id="section-col-header" hidden>Section</th>
                 <th>Exhibit Locations</th>
               </tr>
             </thead>

@@ -1,6 +1,7 @@
 const searchInput = document.getElementById('artist-search');
 const clearButton = document.getElementById('clear-btn');
 const tableBody = document.getElementById('exhibitor-tbody');
+const sectionHeader = document.getElementById('section-col-header');
 const categoryTabs = document.querySelectorAll('.category-tabs button');
 let activeCategory = "Artists' Alley";
 
@@ -25,10 +26,13 @@ const boothMarker = document.getElementById('booth-marker');
 let mapZoom = 1;
 
 function renderTable(items, queryText) {
+  const isSearching = queryText !== '';
+  sectionHeader.hidden = !isSearching;
+
   if (items.length === 0) {
     tableBody.innerHTML = `
       <tr>
-        <td colspan="2" class="empty-cell">
+        <td colspan="${isSearching ? 3 : 2}" class="empty-cell">
           No results match "${queryText}".
           <button type="button" class="link-btn" id="inline-clear">Clear search</button>
         </td>
@@ -42,6 +46,7 @@ function renderTable(items, queryText) {
       (item, index) => `
         <tr>
           <td><button type="button" class="table-link artist-link" data-index="${index}">${item.name}</button></td>
+          ${isSearching ? `<td>${item.category}</td>` : ''}
           <td><button type="button" class="table-link booth-link" data-index="${index}">${item.booth}</button></td>
         </tr>`
     )
@@ -67,6 +72,16 @@ function filterExhibitors() {
   const filtered = query
     ? DIRECTORY.filter((item) => item.name.toLowerCase().includes(query))
     : DIRECTORY.filter((item) => item.category === activeCategory);
+
+  categoryTabs.forEach((tab) => {
+    if (query !== '') {
+      tab.classList.remove('active');
+    } else if (tab.textContent.trim() === activeCategory) {
+      tab.classList.add('active');
+    } else {
+      tab.classList.remove('active');
+    }
+  });
 
   if (!filtered.some((item) => item.mapX)) {
     boothMarker.hidden = true;
@@ -177,8 +192,6 @@ document.querySelectorAll('header a[href="#"], footer a[href="#"]').forEach((lin
 
 categoryTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
-    categoryTabs.forEach((t) => t.classList.remove('active'));
-    tab.classList.add('active');
     activeCategory = tab.textContent.trim();
     searchInput.value = '';
     filterExhibitors();
