@@ -1,4 +1,5 @@
 # COMP3008_HCI
+Author: Jiongxu An
 
 Comic-Con - Exhibit Hall
 
@@ -17,3 +18,14 @@ COMP3008_HCI-main:
 
 How to run:
 Double-click index.html to open it in your browser.
+No additional software or dependencies required.
+
+Main goal:
+Locate specific artist location in the map
+
+Work flow:
+1. Open Sandiego Comic-con homepage.
+2. Navigate to Exhibit hall.
+3. Search specific Artist name.
+4. Locate artist's booth location based on the result.
+5. Locate artist's booth locaiton on the map.
